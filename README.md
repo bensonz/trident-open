@@ -4,10 +4,37 @@
 
 # Trident 🔱
 
-Trident is a project for bootstrapping a kubernetes cluster in China AWS.
+Trident is an open source project for bootstrapping a production ready [ Kubernetes ] cluster on China AWS.
 
-Currently we only support setup on AWS, but that's only the terraform part.
-Theoretically the Ansible part can bootstrap any cloud machine with coreOS_v1407.
+We use [Terraform] to bring up raw machines and related network configurations. Then we use [Ansible] to deploy the kubernetes cluster onto those machines.
+
+## Main Features
+Terraform
+- [x] VPC and internet gateway
+- [x] IAM role
+- [x] Security Group with minimal policies (master, worker and etc)
+- [x] certificates generate (With CFSSL)
+- [x] Elastic IP bind to Edge worker
+- [x] Raw machine setup (with CoreOS_v1407)
+
+Ansible
+- [x] kubernetes setup: machines (hyperkube)
+- [ ] Scalability
+  - [ ] multiple master
+  - [x] multiple worker
+- [x] Essential addons:
+  - [x] dashboard : using cluster role as clusterAdmin
+  - [x] DNS + DNS Autoscale
+- [x] Using AWS EC2 Container Registry
+  - [x] token auto refresh
+- [x] Traefik Ingress Controller
+  - [x] EIP association for edge-router
+- [ ] Monitoring with Prometheus
+- [ ] Logging with Fluentd and cloudwatch
+- [ ] Kubernetes upgrade mechanism
+
+Others
+- [x] kubernetes setup: local/remote (kubectl)
 
 ---
 
@@ -19,45 +46,20 @@ Alternatively you can put your credentials in `terraform.tfvars`.
 ## Prerequisite
 
 Download
+[Terraform ] v0.10.5 , [ Ansible ] v2.3.2.0 and [ CFSSL ]
 
-[Terraform](https://www.terraform.io/)
+---
 
-And
-
-[Ansible](https://www.ansible.com/)
+# Set up guide
 
 ## Deploy
 ```
-make build
+$ make build
 ```
 ## Remote kubectl setup
 ```
-make remote_kubecfg
+$ make remote_kubecfg
 ```
-
-## Features
-- [x] VPC and internet gateway
-- [x] IAM role
-- [x] Security groups (master, worker and etc)
-- [x] kubernetes machines setup (with coreOS_v1407) (master, worker, and etcd)
-- [x] certificates generate (With CFSSL)
-- [x] kubernetes setup: remote (hyperkube and etc)
-- [x] kubernetes setup: local (kubectl)
-- [x] Essential addons:
-  - [x] dashboard : using cluster role as clusterAdmin
-  - [x] DNS + DNS Autoscale
-  - [x] heapster (Metrics)
-- [x] Using AWS EC2 Container Registry
-  - [x] token auto refresh
-- [x] Traefik Ingress Controller
-  - [x] EIP association for edge-router
-  - [ ] Let's Encrypt Support
-- [x] Security Group with minimal policies
-- [ ] Monitoring with Prometheus
-- [ ] Logging with Fluentd and cloudwatch
-- [ ] Kubernetes upgrade mechanism
-- [x] Ansible or kubespray
-
 
 # <span style="color:#b60205"> Other requirements </span>
 If you are on a new machine and want to use this code to bootstrap your AWS + Kubernetes cluster, here are some other prerequisites that may present a challenge.
@@ -85,3 +87,8 @@ ansible-playbook site.yml
 ```
 **Warning**
 Put your hosts in hosts, put your ssh credentials in ansible.cfg.
+
+[Ansible](https://www.ansible.com/)
+[CFSSL](https://cfssl.org/)
+[Kubernetes](http://kubernetes.io/)
+[Terraform](https://www.terraform.io/)
