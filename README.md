@@ -46,7 +46,7 @@ Alternatively you can put your credentials in `terraform.tfvars`.
 ## Prerequisite
 
 Download
-[Terraform ] v0.10.5 , [ Ansible ] v2.3.2.0 and [ CFSSL ]
+[ Terraform ] v0.10.5 , [ Ansible ] v2.3.2.0 and [ CFSSL ]
 
 ---
 
@@ -88,7 +88,7 @@ ansible-playbook site.yml
 **Warning**
 Put your hosts in hosts, put your ssh credentials in ansible.cfg.
 
-[Ansible](https://www.ansible.com/)
-[CFSSL](https://cfssl.org/)
-[Kubernetes](http://kubernetes.io/)
-[Terraform](https://www.terraform.io/)
+[Ansible]:(https://www.ansible.com/)
+[CFSSL]:(https://cfssl.org/)
+[Kubernetes]:(http://kubernetes.io/)
+[Terraform]:(https://www.terraform.io/)
