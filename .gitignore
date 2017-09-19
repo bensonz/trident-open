@@ -1,0 +1,47 @@
+# This directory is meant for TLS/SSL assets
+secrets/
+
+# This one is consequence of the TLS/SSL assets generation
+.srl
+
+# Created by https://www.gitignore.io/api/visualstudiocode
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
+
+# End of https://www.gitignore.io/api/visualstudiocode
+
+# Created by https://www.gitignore.io/api/terraform
+
+### Terraform ###
+# Compiled files
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+
+# Module directory
+.terraform/
+
+### Terraform Patch ###
+*.tfvars
+# End of https://www.gitignore.io/api/terraform
+
+sync_aci_and_gcr/*.aci
+
+### Ansible redundants
+*.retry
+
+### cluster specific
+terraform_vars.yml
+terraform-output
+hosts
+
+### Any binary/tar
+*.tar
+*.zip
+*.tar.bz2
